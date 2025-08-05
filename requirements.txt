@@ -1,0 +1,8 @@
+streamlit
+requests
+python-dotenv
+langchain
+langchain-tavily
+langchain-google-genai
+google-generativeai
+tavily-python
