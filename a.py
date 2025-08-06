@@ -89,7 +89,7 @@ agent_executor = AgentExecutor(
     max_execution_time=120
 )
 
-# ---------------------------
+## ---------------------------
 # Streamlit UI
 # ---------------------------
 st.set_page_config(page_title="AI Travel Planner", page_icon="🌍", layout="wide")
@@ -100,22 +100,44 @@ st.subheader("Plan your perfect trip with AI-powered suggestions.")
 st.markdown("Fill in the travel details in the sidebar and let the AI generate a personalized, day-by-day travel itinerary.")
 
 # Sidebar for input
+import streamlit as st
+
+# Initialize default values only if not already set
+if "city_input" not in st.session_state:
+    st.session_state.city_input = ""
+if "duration_input" not in st.session_state:
+    st.session_state.duration_input = 1
+if "interests_input" not in st.session_state:
+    st.session_state.interests_input = ""
+if "time_input" not in st.session_state:
+    st.session_state.time_input = ""
+
+
+# Clear inputs button logic
+def clear_inputs():
+    st.session_state.city_input = ""
+    st.session_state.duration_input = 1
+    st.session_state.interests_input = ""
+    st.session_state.time_input = ""
+
 with st.sidebar:
     st.header("📝 Trip Details")
+
     city = st.text_input("City", placeholder="e.g., Kolhapur", key="city_input")
-    duration = st.number_input("Duration (in days)", min_value=1, max_value=30, value=4, key="duration_input")
+    duration = st.number_input("Duration (in days)", min_value=1, max_value=30, key="duration_input")
     interests = st.text_input("Your Interests", placeholder="e.g., Food, history, shopping", key="interests_input")
     time_of_year = st.text_input("Time of Year", placeholder="e.g., August", key="time_input")
-    
-    submitted = st.button("Generate Travel Plan")
-    clear = st.button("Clear Inputs")
 
-# Clear form
-if clear:
-    for key in ["city_input", "duration_input", "interests_input", "time_input"]:
-        if key in st.session_state:
-            del st.session_state[key]
-    st.rerun()
+    submitted = st.button("Generate Travel Plan")
+    clear = st.button("Clear Inputs", on_click=clear_inputs)
+
+# Use these variables as usual for your logic:
+city = st.session_state.city_input
+duration = st.session_state.duration_input
+interests = st.session_state.interests_input
+time_of_year = st.session_state.time_input
+
+
 
 # Generate trip plan
 if submitted:
