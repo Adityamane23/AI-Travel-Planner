@@ -152,7 +152,7 @@ if submitted:
 
         input_text = (
             f"You are an expert travel planner. Your task is to create a detailed travel plan for the user based on their preferences and the provided city. "
-            f"Include top restaurants {city} has to offer and the best places to visit. Include weather, climate, and typical temperature information for {city} during {time_of_year}. "
+            f"Include top restaurants names in the city {city} as per users {interests} has to offer and the best places to visit. Include weather, climate, and typical temperature information for {city} restaurants temples during {time_of_year}. "
             f"\n\nUser query: {user_query}\n\nGenerate the response using the agent executor."
         )
 
