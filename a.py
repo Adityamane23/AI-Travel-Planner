@@ -138,7 +138,6 @@ interests = st.session_state.interests_input
 time_of_year = st.session_state.time_input
 
 
-
 # Generate trip plan
 if submitted:
     if not city or not interests or not time_of_year:
@@ -147,12 +146,13 @@ if submitted:
         user_query = (
             f"Plan a {duration}-day trip to {city} in {time_of_year}, focusing on {interests}. "
             "Break the itinerary into daily activities in paragraph format. Include travel suggestions, sightseeing, food, and cultural experiences. "
+            "Also include climate information and typical temperature ranges for that time of year. "
             "Present each day separately and clearly labeled (Day 1, Day 2, etc)."
         )
 
         input_text = (
             f"You are an expert travel planner. Your task is to create a detailed travel plan for the user based on their preferences and the provided city. "
-            f"Include top restaurants {city} has to offer and the best places to visit. Include weather information for {city} during {time_of_year}. "
+            f"Include top restaurants {city} has to offer and the best places to visit. Include weather, climate, and typical temperature information for {city} during {time_of_year}. "
             f"\n\nUser query: {user_query}\n\nGenerate the response using the agent executor."
         )
 
