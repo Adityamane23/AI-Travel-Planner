@@ -113,7 +113,7 @@ with st.sidebar:
 
 # Clear form
 if clear:
-    st.experimental_rerun()
+    st.rerun()
 
 # Generate trip plan
 if submitted:
