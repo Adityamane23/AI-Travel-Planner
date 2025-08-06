@@ -102,17 +102,19 @@ st.markdown("Fill in the travel details in the sidebar and let the AI generate a
 # Sidebar for input
 with st.sidebar:
     st.header("📝 Trip Details")
-    city = st.text_input("City", placeholder="e.g., Kolhapur")
-    duration = st.number_input("Duration (in days)", min_value=1, max_value=30, value=4)
-    interests = st.text_input("Your Interests", placeholder="e.g., Food, history, shopping")
-    time_of_year = st.text_input("Time of Year", placeholder="e.g., August")
+    city = st.text_input("City", placeholder="e.g., Kolhapur", key="city_input")
+    duration = st.number_input("Duration (in days)", min_value=1, max_value=30, value=4, key="duration_input")
+    interests = st.text_input("Your Interests", placeholder="e.g., Food, history, shopping", key="interests_input")
+    time_of_year = st.text_input("Time of Year", placeholder="e.g., August", key="time_input")
     
-    # Buttons
     submitted = st.button("Generate Travel Plan")
     clear = st.button("Clear Inputs")
 
 # Clear form
 if clear:
+    for key in ["city_input", "duration_input", "interests_input", "time_input"]:
+        if key in st.session_state:
+            del st.session_state[key]
     st.rerun()
 
 # Generate trip plan
